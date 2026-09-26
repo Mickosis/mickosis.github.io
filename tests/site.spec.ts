@@ -24,6 +24,15 @@ test.describe('profile page', () => {
     expect(errors).toEqual([]);
   });
 
+  test('lists each repository only once', async ({ page }) => {
+    await page.goto('/');
+    const hrefs = await page.locator('#projects a, #about a').evaluateAll((as) =>
+      as.map((a) => (a as HTMLAnchorElement).href.toLowerCase().replace(/\/$/, '')).filter((h) => /github\.com\/mickosis\/[^/]+$/.test(h)),
+    );
+    expect(hrefs.length).toBeGreaterThan(0);
+    expect(hrefs.filter((h, i) => hrefs.indexOf(h) !== i)).toEqual([]);
+  });
+
   test('has no horizontal scroll', async ({ page }) => {
     await page.goto('/');
     const [scroll, inner] = await page.evaluate(() => [document.documentElement.scrollWidth, window.innerWidth]);

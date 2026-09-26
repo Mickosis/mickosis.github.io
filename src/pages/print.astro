@@ -14,7 +14,7 @@ const site = basics.url.replace(/^https?:\/\//, '');
 const qr = await QRCode.toString(basics.url, { type: 'svg', margin: 0, errorCorrectionLevel: 'M', color: { dark: '#1e1e1e', light: '#ffffff00' } });
 
 // Older roles keep fewer bullets so the document stays within two pages.
-const bulletLimit = (i: number) => (i < 4 ? 4 : 2);
+const bulletLimit = (i: number) => (i === 0 ? 6 : i < 4 ? 4 : 2);
 const topProjects = [...featured.slice(0, 2), ...masked.slice(0, 2)];
 const [user, domain] = basics.email.split('@');
 ---

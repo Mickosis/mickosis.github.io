@@ -10,9 +10,10 @@ basics:
   url: https://mickosis.github.io
   summary: >-
     QA Chapter Lead with over ten years in manual and automated testing across
-    telematics, airline, logistics and SaaS products. I lead a chapter of QA
-    engineers in Manila, build mobile and web automation in TypeScript, and bring
-    AI into everyday testing work with coding agents, Copilot and custom MCP servers.
+    telematics, airline, logistics and SaaS products. I lead the Manila QA chapter,
+    act as Product Owner for Test Automation Foundations, build mobile and web
+    automation in TypeScript, and bring AI into everyday testing with coding agents,
+    Copilot and custom MCP servers.
   location:
     city: Metro Manila
     countryCode: PH
@@ -30,12 +31,14 @@ work:
     position: Chapter Lead - QA
     location: Pasig, Philippines (Hybrid)
     startDate: 2025-11
-    summary: Leads the Manila QA chapter and drives AI adoption across testing.
+    summary: Leads the Manila QA chapter, owns the Test Automation Foundations backlog and drives AI adoption across testing.
     highlights:
-      - Lead 5 QA engineers and the Manila QA Chapter, setting how the team plans, writes and automates tests.
-      - Drive AI adoption in QA with agentic terminal workflows (cmux) and GitHub Copilot.
-      - Build MCP servers that connect AI assistants to Insomnia and TestRail.
-      - Contribute to internal telematics tooling used by engineering teams.
+      - Lead the Manila QA Chapter and a team of 5 QA engineers, setting the standards for how the chapter plans, writes and automates tests.
+      - Act as Product Owner for the Test Automation Foundations team, setting priorities and owning the backlog for the shared automation groundwork other squads build on.
+      - Built a Java and Appium mobile automation framework that cut the mobile testing cycle from a month to a week.
+      - Drive AI adoption across QA, bringing agentic terminal workflows (cmux) and GitHub Copilot into everyday testing.
+      - Build MCP servers that let AI assistants work directly with Insomnia API collections and TestRail test cases.
+      - Contribute to EROAD's internal telematics tooling.
   - name: EROAD
     position: Software QA Engineer
     location: Auckland, New Zealand (Remote)
@@ -167,9 +170,6 @@ projects:
     startDate: "2021"
     url: https://github.com/Mickosis/shopifyshopper
     description: Python monitor for Shopify stores that automates purchases with Selenium, logs to Discord webhooks, alerts through Twilio and runs on AWS.
-  - name: Private game server
-    startDate: "2017"
-    description: C and C++ contributions, Git workflow, Linux VPS setup and game database administration.
   - name: Pixel Bot
     startDate: "2017"
     url: https://github.com/Mickosis/lrn2play
@@ -181,6 +181,8 @@ projects:
 
 # Career results rendered as a passing test run on the site and PDF.
 x-results:
+  - spec: cuts mobile testing from a month to a week with Java and Appium
+    where: EROAD
   - spec: cuts regression from 7 days to 4 hours
     where: CES
     year: "2023"
@@ -203,6 +205,9 @@ x-results:
     where: EROAD
     year: "2024"
   - spec: leads 5 QA engineers and the Manila QA chapter
+    where: EROAD
+    year: "2025"
+  - spec: owns the Test Automation Foundations backlog as Product Owner
     where: EROAD
     year: "2025"
   - spec: connects AI assistants to Insomnia and TestRail via MCP

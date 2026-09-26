@@ -101,7 +101,7 @@ const archiveFor = (s: (typeof archive)[number]['stats']) => langShare(s, 1)[0]?
               <span class="tick g" aria-hidden="true">✓</span>
               <span class="spec">{r.spec}</span>
               <span class="leader" aria-hidden="true"></span>
-              <span class="where d">{r.where} · {r.year}</span>
+              <span class="where d">{r.where}{r.year && ` · ${r.year}`}</span>
             </li>
           ))}
         </ul>
@@ -143,10 +143,11 @@ const archiveFor = (s: (typeof archive)[number]['stats']) => langShare(s, 1)[0]?
         <h3 class="dir b">archive/</h3>
         <ul class="tree archive">
           {archive.map((p) => (
-            <li class="row">
+            <li class="row" data-kind="archive">
               <a href={p.stats?.url ?? undefined}>{p.title}</a>
               <span class="c">{archiveFor(p.stats)}</span>
               <span class="d">{n(p.stats?.myCommits ?? 0)} {p.stats?.myCommits === 1 ? 'commit' : 'commits'} · {fmtDate(p.stats?.pushedAt ?? null)}</span>
+              {p.blurb && <span class="blurb">{p.blurb}</span>}
             </li>
           ))}
         </ul>
@@ -182,19 +183,6 @@ const archiveFor = (s: (typeof archive)[number]['stats']) => langShare(s, 1)[0]?
             <dd>
               <ul class="dash">
                 {resume['x-trainings'].map((tr) => <li>{tr.name}{tr.issuer && <span class="d"> · {tr.issuer}</span>}</li>)}
-              </ul>
-            </dd>
-          </div>
-          <div>
-            <dt>side_projects</dt>
-            <dd>
-              <ul class="dash">
-                {resume.projects.map((p) => (
-                  <li>
-                    <span class="y">{p.startDate}</span> {p.url ? <a href={p.url}>{p.name}</a> : <span class="hi">{p.name}</span>}
-                    <span class="d"> · {p.description}</span>
-                  </li>
-                ))}
               </ul>
             </dd>
           </div>
@@ -379,7 +367,8 @@ const archiveFor = (s: (typeof archive)[number]['stats']) => langShare(s, 1)[0]?
   .dir { margin: 0.5rem 0 0.6rem; }
   .dir .normal { font-weight: 400; }
   .tree { margin-bottom: 1rem; }
-  .archive .row { position: relative; padding: 0 0 0.2rem 4ch; display: flex; flex-wrap: wrap; column-gap: 2ch; }
+  .archive .row { position: relative; padding: 0 0 0.6rem 4ch; display: flex; flex-wrap: wrap; column-gap: 2ch; }
+  .archive .blurb { flex-basis: 100%; max-width: 72ch; }
   .archive .row::before { content: '├──'; position: absolute; left: 0; color: var(--dim); }
   .archive .row:last-child::before { content: '└──'; }
 

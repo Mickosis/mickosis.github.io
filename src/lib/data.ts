@@ -37,7 +37,7 @@ const Resume = z.object({
   projects: z.array(
     z.object({ name: z.string(), startDate: ym, url: z.string().url().optional(), description: z.string() }),
   ),
-  'x-results': z.array(z.object({ spec: z.string(), where: z.string(), year: ym })),
+  'x-results': z.array(z.object({ spec: z.string(), where: z.string(), year: ym.optional() })),
   'x-trainings': z.array(z.object({ name: z.string(), issuer: z.string().optional() })),
 });
 
@@ -131,10 +131,17 @@ export const masked: Project[] = repos.masked
   .sort((a, b) => (b.stats?.pushedAt ?? '').localeCompare(a.stats?.pushedAt ?? ''));
 
 const featuredSet = new Set(repos.featured.map((f) => f.repo.toLowerCase()));
+// Resume projects that live on GitHub describe their repo here instead of in a second list.
+const resumeProjectFor = (url: string | null) =>
+  url ? resume.projects.find((p) => p.url?.toLowerCase() === url.toLowerCase()) : undefined;
+
 export const archive: Project[] = github.public
   .filter((s) => !featuredSet.has(s.name.toLowerCase()))
   .sort((a, b) => b.pushedAt.localeCompare(a.pushedAt))
-  .map((s) => ({ kind: 'archive', title: s.name, blurb: s.description ?? '', stack: topLangs(s), stats: s }));
+  .map((s) => {
+    const rp = resumeProjectFor(s.url);
+    return { kind: 'archive', title: rp?.name ?? s.name, blurb: rp?.description ?? s.description ?? '', stack: topLangs(s), stats: s };
+  });
 
 // ---------- formatting helpers ----------
 
