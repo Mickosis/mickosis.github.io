@@ -11,8 +11,8 @@ basics:
   summary: >-
     With over a decade of experience in manual and automated testing, I have
     honed my skills in building automation frameworks from scratch or enhancing
-    existing ones to boost efficiency and quality. Today I lead the Manila QA
-    Chapter at EROAD, act as Product Owner for Test Automation Foundations, and
+    existing ones to boost efficiency and quality. Today I lead EROAD's 15+ person
+    Manila QA Chapter, act as Product Owner for Test Automation Foundations, and
     bring AI into everyday testing with coding agents, GitHub Copilot and custom
     MCP servers. My passion for automation and continuous improvement drives me
     to thrive in collaborative environments, where I eagerly seek new challenges.
@@ -34,12 +34,12 @@ work:
     position: QA Chapter Lead
     location: Pasig, Philippines (Hybrid)
     startDate: 2025-11
-    summary: Leads the Manila QA Chapter and the Test Automation Foundations team.
+    summary: Leads the 15+ person Manila QA Chapter and the Test Automation Foundations team.
     highlights:
-      - Lead the Manila QA Chapter and a team of 5 QA engineers.
+      - Lead the 15+ person Manila QA Chapter, part of EROAD's 20+ person global QA chapter, with 5 direct reports.
       - Product Owner for the Test Automation Foundations team.
       - Built a Java + Appium mobile automation framework, cutting testing time from a month to a week.
-      - Drive AI adoption (cmux, GitHub Copilot), build MCP servers for Insomnia and TestRail, and contribute to internal telematics tooling.
+      - Drive AI adoption with agentic terminal workflows (Ghostty, cmux, Neovim) and GitHub Copilot, build MCP servers for Insomnia and TestRail, and contribute to internal telematics tooling.
   - name: EROAD
     position: Software QA Engineer
     location: Auckland, New Zealand (Remote)
@@ -131,6 +131,8 @@ skills:
     keywords: [WebdriverIO, Appium, Playwright, Selenium, TestNG, Testsigma]
   - name: AI tooling
     keywords: [Claude Code, GitHub Copilot, Google Antigravity, OpenCode]
+  - name: Terminal workflow
+    keywords: [Ghostty, cmux, Neovim]
   - name: Languages
     keywords: [TypeScript, JavaScript, Python, Java, C#]
   - name: API
@@ -205,7 +207,7 @@ x-results:
   - spec: runs one Appium suite locally and on LambdaTest cloud
     where: EROAD
     year: "2024"
-  - spec: leads 5 QA engineers and the Manila QA chapter
+  - spec: leads a 15+ person QA chapter in Manila (5 direct reports)
     where: EROAD
     year: "2025"
   - spec: owns the Test Automation Foundations backlog as Product Owner
