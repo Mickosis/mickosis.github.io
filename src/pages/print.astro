@@ -15,7 +15,7 @@ const qr = await QRCode.toString(basics.url, { type: 'svg', margin: 0, errorCorr
 
 // Older roles keep fewer bullets so the document stays within two pages.
 const bulletLimit = (i: number) => (i === 0 ? 6 : i < 4 ? 4 : 2);
-const topProjects = [...featured.slice(0, 2), ...masked.slice(0, 2)];
+const topProjects = [...featured.slice(0, 3), ...masked.slice(0, 2)];
 const [user, domain] = basics.email.split('@');
 ---
 <!doctype html>
