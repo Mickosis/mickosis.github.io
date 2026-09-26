@@ -159,7 +159,7 @@ const archiveFor = (s: (typeof archive)[number]['stats']) => langShare(s, 1)[0]?
           {resume.skills.map((s) => (
             <div>
               <dt class="b bold">{s.name.toLowerCase().replace(/ & /g, '-').replace(/\s+/g, '-').replace(/\//g, '')}/</dt>
-              <dd>{s.keywords.join('  ')}</dd>
+              <dd>{s.keywords.map((k) => <span class="kw">{k}</span>)}</dd>
             </div>
           ))}
         </dl>
@@ -374,7 +374,8 @@ const archiveFor = (s: (typeof archive)[number]['stats']) => langShare(s, 1)[0]?
 
   /* Skills */
   .skills { margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(34ch, 1fr)); gap: 0.9rem 4ch; }
-  .skills dd { margin: 0; }
+  .skills dd { margin: 0; display: flex; flex-wrap: wrap; column-gap: 2.5ch; }
+  .skills .kw { white-space: nowrap; }
 
   /* About */
   .ls { margin-bottom: 2.5rem; }

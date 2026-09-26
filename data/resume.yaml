@@ -130,7 +130,7 @@ skills:
   - name: Automation
     keywords: [WebdriverIO, Appium, Playwright, Selenium, TestNG, Testsigma]
   - name: AI tooling
-    keywords: [Claude Code, GitHub Copilot, MCP servers, cmux, Agentic workflows]
+    keywords: [Claude Code, GitHub Copilot, Google Antigravity, OpenCode]
   - name: Languages
     keywords: [TypeScript, JavaScript, Python, Java, C#]
   - name: API
@@ -146,7 +146,7 @@ skills:
   - name: Network
     keywords: [Proxyman, Charles Proxy]
   - name: Platforms
-    keywords: [iOS, Android, macOS, Windows, Azure]
+    keywords: [iOS, Android, macOS, Windows, Linux, Azure]
 
 languages:
   - language: English
