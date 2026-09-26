@@ -26,8 +26,8 @@ const stack = langs.length ? langs.map((l) => `${l.name} ${l.pct}%`) : p.stack;
     <p class="stats">
       <span><span class="hi">{n(s.myCommits)}</span> {s.myCommits === 1 ? 'commit' : 'commits'} by me{s.myCommits !== s.commits && <span class="d"> of {n(s.commits)}</span>}</span>
       {s.commits90d > 0 && <span><span class="hi">{n(s.commits90d)}</span> in 90 days</span>}
-      {s.mergedPRs > 0 && <span><span class="hi">{n(s.mergedPRs)}</span> PRs merged</span>}
-      {s.releases > 0 && <span><span class="hi">{n(s.releases)}</span> releases</span>}
+      {s.mergedPRs > 0 && <span><span class="hi">{n(s.mergedPRs)}</span> {s.mergedPRs === 1 ? 'PR' : 'PRs'} merged</span>}
+      {s.releases > 0 && <span><span class="hi">{n(s.releases)}</span> {s.releases === 1 ? 'release' : 'releases'}</span>}
       {s.stars > 0 && <span><span class="y">★</span> {n(s.stars)}</span>}
       {s.agentContract && <span class="m">agent-built</span>}
     </p>

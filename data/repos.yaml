@@ -22,6 +22,12 @@ featured:
     blurb: >-
       Open-source pixel bot in AutoIt that drives game input from screen pattern
       recognition. My most-starred repo and my first real automation project.
+  - repo: shopifyshopper
+    title: Shopify Shopper
+    blurb: >-
+      Python bot that watches Shopify stores for restocks, sends alerts
+      through Discord webhooks and Twilio, and checks out automatically with
+      Selenium. Ran on AWS for round-the-clock monitoring.
   - repo: JSPlaywrightFramework
     title: Playwright framework (JavaScript)
     blurb: >-
@@ -32,11 +38,6 @@ featured:
     blurb: >-
       Page Object Model framework on Selenium and pytest with data-driven tests,
       shared utilities and HTML reports.
-  - repo: formy-project-automation
-    title: Selenium framework (Java)
-    blurb: >-
-      Java and Selenium WebDriver exercises covering waits, forms, alerts,
-      page objects and test structure.
 
 exclude:
   - mickosis.github.io

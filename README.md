@@ -19,9 +19,9 @@ This repo maintains itself. Coding agents edit one YAML file. A CI pipeline refr
 |---|---|---:|---:|:---:|
 | [Pokémon Modern Emerald](https://github.com/Mickosis/Modern_Emerald) | C, Assembly | 92 | 93 | yes |
 | [lrn2play](https://github.com/Mickosis/lrn2play) | AutoIt | 18 | 0 |  |
+| [Shopify Shopper](https://github.com/Mickosis/shopifyshopper) | Python | 16 | 0 |  |
 | [Playwright framework (JavaScript)](https://github.com/Mickosis/JSPlaywrightFramework) | JavaScript | 1 | 0 |  |
 | [Selenium framework (Python)](https://github.com/Mickosis/PythonSelFramework) | Python, CSS | 3 | 0 |  |
-| [Selenium framework (Java)](https://github.com/Mickosis/formy-project-automation) | Java | 1 | 0 |  |
 | Online game server platform *(private)* | C, Python | 1,060 | 1,172 | yes |
 | Privacy-first follower audit *(private)* | HTML, JavaScript | 9 | 2 |  |
 | Game client anti-cheat *(private)* | C | 8 | 8 | yes |
