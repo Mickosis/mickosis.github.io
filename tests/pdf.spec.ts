@@ -1,11 +1,12 @@
 import { test, expect } from '@playwright/test';
 import { PDFDocument } from 'pdf-lib';
-import { readFileSync } from 'node:fs';
 
 test.describe('resume.pdf', () => {
 
-  test('is at most two A4 pages with metadata', async () => {
-    const doc = await PDFDocument.load(readFileSync('dist/resume.pdf'));
+  test('is at most two A4 pages with metadata', async ({ request }) => {
+    const res = await request.get('/resume.pdf');
+    expect(res.ok()).toBe(true);
+    const doc = await PDFDocument.load(await res.body());
     expect(doc.getPageCount()).toBeGreaterThanOrEqual(1);
     expect(doc.getPageCount()).toBeLessThanOrEqual(2);
     const { width, height } = doc.getPage(0).getSize();

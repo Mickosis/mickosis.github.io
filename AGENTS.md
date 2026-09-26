@@ -26,6 +26,7 @@ The repo is **public**. It builds https://mickosis.github.io, the resume and pro
 npm run build          # astro build + render dist/resume.pdf (fails above 2 pages)
 npm test               # Playwright: e2e + visual on desktop, iPhone 13 (WebKit), Pixel 7
 npm run leak-check     # needs PRIVATE_REPOS in env; fails if a private name reaches the output
+npm run test:live      # same suite against https://mickosis.github.io (CI runs it after every deploy)
 ```
 
 - **Intentional visual changes:** run `npx playwright test --update-snapshots` locally for the macOS baselines. Run the deploy workflow with `update_snapshots: true` for the Linux baselines.

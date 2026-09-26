@@ -121,3 +121,36 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  smoke:
+    # Runs the full suite against the live URL once Pages has the new build.
+    needs: deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Install browsers
+        run: npx playwright install --with-deps chromium webkit
+
+      - name: Wait for the new build to be live
+        run: |
+          for i in $(seq 1 30); do
+            live=$(curl -fsS https://mickosis.github.io/build.json | jq -r .sha || true)
+            [ "$live" = "$GITHUB_SHA" ] && exit 0
+            sleep 10
+          done
+          echo "Live site still serves $live, expected $GITHUB_SHA"; exit 1
+
+      - name: Test the live site (desktop, iPhone 13, Pixel 7)
+        run: npm run test:live
+

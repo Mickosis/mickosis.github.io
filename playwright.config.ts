@@ -1,6 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
 
 const PORT = 4321;
+// BASE_URL=https://mickosis.github.io runs the suite against the live site instead of dist/.
+const LIVE = process.env.BASE_URL;
 
 export default defineConfig({
   testDir: 'tests',
@@ -12,7 +14,7 @@ export default defineConfig({
   snapshotPathTemplate: '{testDir}/__screenshots__/{platform}/{projectName}/{arg}{ext}',
   expect: { toHaveScreenshot: { maxDiffPixelRatio: 0.01, animations: 'disabled' } },
   use: {
-    baseURL: `http://127.0.0.1:${PORT}`,
+    baseURL: LIVE || `http://127.0.0.1:${PORT}`,
     trace: 'retain-on-failure',
   },
   projects: [
@@ -21,7 +23,7 @@ export default defineConfig({
     { name: 'iphone-13', use: { ...devices['iPhone 13'] }, testIgnore: /(pdf|leak-check)\.spec/ },
     { name: 'pixel-7', use: { ...devices['Pixel 7'] }, testIgnore: /(pdf|leak-check)\.spec/ },
   ],
-  webServer: {
+  webServer: LIVE ? undefined : {
     command: `npx tsx scripts/serve.ts`,
     env: { PORT: String(PORT) },
     url: `http://127.0.0.1:${PORT}/`,
