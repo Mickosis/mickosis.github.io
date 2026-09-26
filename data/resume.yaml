@@ -9,11 +9,14 @@ basics:
   email: mico.rigunay@gmail.com
   url: https://mickosis.github.io
   summary: >-
-    QA Chapter Lead with over ten years in manual and automated testing across
-    telematics, airline, logistics and SaaS products. I lead the Manila QA chapter,
-    act as Product Owner for Test Automation Foundations, build mobile and web
-    automation in TypeScript, and bring AI into everyday testing with coding agents,
-    Copilot and custom MCP servers.
+    With over a decade of experience in manual and automated testing, I have
+    honed my skills in building automation frameworks from scratch or enhancing
+    existing ones to boost efficiency and quality. Today I lead the Manila QA
+    Chapter at EROAD, act as Product Owner for Test Automation Foundations, and
+    bring AI into everyday testing with coding agents, GitHub Copilot and custom
+    MCP servers. My passion for automation and continuous improvement drives me
+    to thrive in collaborative environments, where I eagerly seek new challenges.
+    Let's connect to explore how I can contribute to your team's success.
   location:
     city: Metro Manila
     countryCode: PH
@@ -28,17 +31,15 @@ basics:
 
 work:
   - name: EROAD
-    position: Chapter Lead - QA
+    position: QA Chapter Lead
     location: Pasig, Philippines (Hybrid)
     startDate: 2025-11
-    summary: Leads the Manila QA chapter, owns the Test Automation Foundations backlog and drives AI adoption across testing.
+    summary: Leads the Manila QA Chapter and the Test Automation Foundations team.
     highlights:
-      - Lead the Manila QA Chapter and a team of 5 QA engineers, setting the standards for how the chapter plans, writes and automates tests.
-      - Act as Product Owner for the Test Automation Foundations team, setting priorities and owning the backlog for the shared automation groundwork other squads build on.
-      - Built a Java and Appium mobile automation framework that cut the mobile testing cycle from a month to a week.
-      - Drive AI adoption across QA, bringing agentic terminal workflows (cmux) and GitHub Copilot into everyday testing.
-      - Build MCP servers that let AI assistants work directly with Insomnia API collections and TestRail test cases.
-      - Contribute to EROAD's internal telematics tooling.
+      - Lead the Manila QA Chapter and a team of 5 QA engineers.
+      - Product Owner for the Test Automation Foundations team.
+      - Built a Java + Appium mobile automation framework, cutting testing time from a month to a week.
+      - Drive AI adoption (cmux, GitHub Copilot), build MCP servers for Insomnia and TestRail, and contribute to internal telematics tooling.
   - name: EROAD
     position: Software QA Engineer
     location: Auckland, New Zealand (Remote)
