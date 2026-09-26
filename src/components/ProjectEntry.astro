@@ -1,0 +1,56 @@
+---
+import type { Project } from '../lib/data';
+import { n, fmtDate, langShare } from '../lib/data';
+import Sparkline from './Sparkline.astro';
+
+interface Props { p: Project }
+const { p } = Astro.props;
+const s = p.stats;
+const active = s ? Date.now() - new Date(s.pushedAt).getTime() < 30 * 864e5 : false;
+const langs = langShare(s);
+const stack = langs.length ? langs.map((l) => `${l.name} ${l.pct}%`) : p.stack;
+---
+<li class:list={['entry', p.kind]} data-kind={p.kind}>
+  <div class="head">
+    {p.kind === 'masked' ? (
+      <span class="name hi bold"><span class="lock y" title="Private repository, details withheld">[private]</span> {p.title}</span>
+    ) : (
+      <a class="name bold" href={s?.url ?? undefined}>{p.title}</a>
+    )}
+    {active && <span class="g state">● active</span>}
+    {s?.fork && <span class="d">fork of {s.fork}</span>}
+    {s?.homepage && p.kind !== 'masked' && <a class="c" href={s.homepage}>live demo</a>}
+  </div>
+  <p class="blurb">{p.blurb}</p>
+  {s && (
+    <p class="stats">
+      <span><span class="hi">{n(s.myCommits)}</span> {s.myCommits === 1 ? 'commit' : 'commits'} by me{s.myCommits !== s.commits && <span class="d"> of {n(s.commits)}</span>}</span>
+      {s.commits90d > 0 && <span><span class="hi">{n(s.commits90d)}</span> in 90 days</span>}
+      {s.mergedPRs > 0 && <span><span class="hi">{n(s.mergedPRs)}</span> PRs merged</span>}
+      {s.releases > 0 && <span><span class="hi">{n(s.releases)}</span> releases</span>}
+      {s.stars > 0 && <span><span class="y">★</span> {n(s.stars)}</span>}
+      {s.agentContract && <span class="m">agent-built</span>}
+    </p>
+  )}
+  <p class="meta d">
+    <span class="c">{stack.join('  ')}</span>
+    {s && <span>{fmtDate(s.firstCommitAt ?? s.createdAt)} – {fmtDate(s.pushedAt)}</span>}
+    {s && s.weekly.some((w) => w > 0) && <Sparkline values={s.weekly} label="Weekly commits, last year" />}
+  </p>
+</li>
+<style>
+  .entry { position: relative; padding: 0 0 1.25rem 4ch; }
+  .entry::before {
+    content: '├──';
+    position: absolute;
+    left: 0;
+    color: var(--dim);
+  }
+  .entry:last-child::before { content: '└──'; }
+  .head { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 1.5ch; }
+  .name { color: var(--blue); }
+  .masked .name { color: var(--bright); }
+  .blurb { max-width: 72ch; margin-top: 0.15rem; }
+  .stats, .meta { display: flex; flex-wrap: wrap; column-gap: 2ch; margin-top: 0.2rem; }
+  .state { font-size: 0.9em; }
+</style>

@@ -1,0 +1,15 @@
+---
+import Base from '../layouts/Base.astro';
+const path = Astro.url.pathname;
+---
+<Base title="Not found · Miguel Carlo Rigunay" description="This page does not exist.">
+  <main class="nf">
+    <p><span class="g bold">mico@github</span> <span class="b bold">~</span> <span class="d">%</span> <span class="hi">cd {path}</span></p>
+    <p><span class="r">cd: no such file or directory</span></p>
+    <p class="back"><a href="/">cd ~</a> to go back to the profile, or <a href="/resume.pdf">download the resume PDF</a>.</p>
+  </main>
+</Base>
+<style>
+  .nf { max-width: 80ch; margin: 18vh auto 0; padding: 0 2ch; }
+  .back { margin-top: 1rem; }
+</style>

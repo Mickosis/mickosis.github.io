@@ -1,0 +1,17 @@
+---
+/** Email link assembled in the browser so the address is not sitting in the HTML for scrapers. */
+import { resume } from '../lib/data';
+const [user, domain] = resume.basics.email.split('@');
+interface Props { class?: string }
+const { class: cls } = Astro.props;
+---
+<a class:list={['js-email', cls]} data-u={user.split('').reverse().join('')} data-d={domain} href="#contact">
+  {user} [at] {domain}
+</a>
+<script>
+  document.querySelectorAll<HTMLAnchorElement>('a.js-email').forEach((a) => {
+    const addr = `${(a.dataset.u || '').split('').reverse().join('')}@${a.dataset.d}`;
+    a.href = `mailto:${addr}`;
+    a.textContent = addr;
+  });
+</script>

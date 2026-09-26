@@ -1,0 +1,431 @@
+---
+import Base from '../layouts/Base.astro';
+import Prompt from '../components/Prompt.astro';
+import Email from '../components/Email.astro';
+import Sparkline from '../components/Sparkline.astro';
+import ProjectEntry from '../components/ProjectEntry.astro';
+import {
+  resume, github, featured, masked, archive, fmtYm, fmtDate, n, tenure, careerStart, langShare,
+} from '../lib/data';
+
+const { basics, work } = resume;
+const results = resume['x-results'];
+const github_ = basics.profiles.find((p) => p.network === 'GitHub')!;
+const linkedin = basics.profiles.find((p) => p.network === 'LinkedIn')!;
+const t = github.totals;
+const contrib = github.contributions;
+
+const tabs = [
+  { id: 'whoami', label: 'whoami' },
+  { id: 'results', label: 'npm test' },
+  { id: 'experience', label: 'git log' },
+  { id: 'projects', label: 'tree' },
+  { id: 'skills', label: 'ls skills' },
+  { id: 'about', label: 'cat about' },
+  { id: 'build', label: 'build' },
+];
+
+// Numbers in the shortlog block are right-aligned to the widest one.
+const shortlog = [
+  { v: n(t.myCommits), text: `commits of mine across ${t.repos} repos` },
+  { v: n(t.commits90d), text: 'commits in the last 90 days' },
+  { v: n(t.agentRepos), text: 'repos built with coding agents' },
+  ...(contrib ? [{ v: n(contrib.totalContributions), text: 'GitHub contributions this year', spark: contrib.weekly }] : []),
+];
+const pad = Math.max(...shortlog.map((s) => s.v.length));
+
+const generated = github.generatedAt.slice(0, 10);
+const sha = (process.env.GITHUB_SHA || '').slice(0, 7);
+const runId = process.env.GITHUB_RUN_ID || '';
+const repoSlug = process.env.GITHUB_REPOSITORY || 'Mickosis/mickosis.github.io';
+const repoUrl = `https://github.com/${repoSlug}`;
+const archiveFor = (s: (typeof archive)[number]['stats']) => langShare(s, 1)[0]?.name ?? '';
+---
+<Base
+  title={`${basics.name} · ${basics.label}`}
+  description={`${basics.name}, ${basics.label}. ${basics.summary}`}
+>
+  <div class="window">
+    <header class="titlebar">
+      <nav class="tabs" aria-label="Sections">
+        {tabs.map((tab, i) => (
+          <a href={`#${tab.id}`} class="tab" data-tab={tab.id} aria-current={i === 0 ? 'true' : undefined}>{tab.label}</a>
+        ))}
+      </nav>
+      <div class="actions">
+        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch color theme">
+          <span aria-hidden="true">◐</span> <span data-theme-label>dark</span>
+        </button>
+        <a class="pdf" href="/resume.pdf" download="Miguel-Carlo-Rigunay-Resume.pdf" data-testid="download-pdf">resume.pdf ↓</a>
+      </div>
+    </header>
+
+    <main class="term">
+      <section id="whoami" class="block hero" aria-labelledby="name">
+        <p class="boot">
+          <span class="g">mico@github</span><span class="b">~</span><span class="d">%</span><span class="typed hi">whoami</span>
+        </p>
+        <div class="out">
+          <h1 id="name">{basics.name}</h1>
+          <p class="label c">{basics.label}</p>
+          <p class="where d">{basics.location.city}, {basics.location.region} · {work[0].position} at {work[0].name}</p>
+          <p class="summary">{basics.summary}</p>
+          <ul class="contact" id="contact">
+            <li><span class="d">mail</span> <Email /></li>
+            <li><span class="d">github</span> <a href={github_.url}>{github_.username}</a></li>
+            <li><span class="d">linkedin</span> <a href={linkedin.url}>{linkedin.username}</a></li>
+            <li><span class="d">resume</span> <a href="/resume.pdf" download="Miguel-Carlo-Rigunay-Resume.pdf">download PDF</a></li>
+          </ul>
+
+          <div class="shortlog" aria-label="GitHub activity">
+            <p class="d">$ git shortlog -sn --all-repos</p>
+            <ul>
+              {shortlog.map((s) => (
+                <li>
+                  <span class="num hi" style={`min-width:${pad}ch`}>{s.v}</span>
+                  <span>{s.text}</span>
+                  {s.spark && <Sparkline values={s.spark} width={26} label="Weekly contributions" />}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="results" class="block" aria-labelledby="results-h">
+        <Prompt id="results-h" cmd="npm test -- career.spec.ts" label="Career results" />
+        <p class="suite"><span class="pass">PASS</span> <span class="d">tests/</span><span class="hi">career.spec.ts</span></p>
+        <ul class="specs">
+          {results.map((r) => (
+            <li>
+              <span class="tick g" aria-hidden="true">✓</span>
+              <span class="spec">{r.spec}</span>
+              <span class="leader" aria-hidden="true"></span>
+              <span class="where d">{r.where} · {r.year}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="summary-line">
+          <span class="bold">Tests:</span> <span class="g bold">{results.length} passed</span>, {results.length} total<br />
+          <span class="bold">Time:</span> &nbsp;{tenure(careerStart)} <span class="d">since {fmtYm(careerStart)}</span>
+        </p>
+      </section>
+
+      <section id="experience" class="block" aria-labelledby="experience-h">
+        <Prompt id="experience-h" cmd="git log --graph --career" label="Experience" />
+        <ol class="log">
+          {work.map((w, i) => (
+            <li class="commit">
+              <p class="subject">
+                <span class="y">{fmtYm(w.startDate)} – {fmtYm(w.endDate)}</span>
+                {i === 0 && <span class="c">(HEAD)</span>}
+                <span class="hi bold">{w.position}</span>
+              </p>
+              <p class="org"><span class="g">{w.name}</span> <span class="d">· {w.location}</span></p>
+              <ul class="bullets">
+                {w.highlights.map((h) => <li>{h}</li>)}
+              </ul>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section id="projects" class="block" aria-labelledby="projects-h">
+        <Prompt id="projects-h" cmd="tree ~/projects --stats" label="Projects" />
+        <p class="d updated">Stats refresh weekly from the GitHub API. Last run {generated}.</p>
+
+        <h3 class="dir b">featured/</h3>
+        <ul class="tree">{featured.map((p) => <ProjectEntry p={p} />)}</ul>
+
+        <h3 class="dir b">private/ <span class="d normal">names and links withheld</span></h3>
+        <ul class="tree">{masked.map((p) => <ProjectEntry p={p} />)}</ul>
+
+        <h3 class="dir b">archive/</h3>
+        <ul class="tree archive">
+          {archive.map((p) => (
+            <li class="row">
+              <a href={p.stats?.url ?? undefined}>{p.title}</a>
+              <span class="c">{archiveFor(p.stats)}</span>
+              <span class="d">{n(p.stats?.myCommits ?? 0)} {p.stats?.myCommits === 1 ? 'commit' : 'commits'} · {fmtDate(p.stats?.pushedAt ?? null)}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section id="skills" class="block" aria-labelledby="skills-h">
+        <Prompt id="skills-h" cmd="ls ~/skills/*" label="Skills" />
+        <dl class="skills">
+          {resume.skills.map((s) => (
+            <div>
+              <dt class="b bold">{s.name.toLowerCase().replace(/ & /g, '-').replace(/\s+/g, '-').replace(/\//g, '')}/</dt>
+              <dd>{s.keywords.join('  ')}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
+      <section id="about" class="block" aria-labelledby="about-h">
+        <Prompt id="about-h" cmd="ls -l ~/certificates" label="Certificates and background" />
+        <ul class="ls">
+          {resume.certificates.map((c) => (
+            <li><span class="y">{c.date}</span> <span class="d issuer">{c.issuer}</span> <span>{c.name}</span></li>
+          ))}
+        </ul>
+
+        <Prompt cmd="cat ~/about.yaml" as="p" />
+        <dl class="yaml">
+          <div><dt>education</dt><dd>{resume.education.map((e) => `${e.studyType} in ${e.area}, ${e.institution} (${e.startDate}–${e.endDate})`)}</dd></div>
+          <div><dt>languages</dt><dd>{resume.languages.map((l) => `${l.language} (${l.fluency})`).join(', ')}</dd></div>
+          <div><dt>interests</dt><dd>{resume.interests.map((i) => i.name).join(', ')}</dd></div>
+          <div>
+            <dt>trainings</dt>
+            <dd>
+              <ul class="dash">
+                {resume['x-trainings'].map((tr) => <li>{tr.name}{tr.issuer && <span class="d"> · {tr.issuer}</span>}</li>)}
+              </ul>
+            </dd>
+          </div>
+          <div>
+            <dt>side_projects</dt>
+            <dd>
+              <ul class="dash">
+                {resume.projects.map((p) => (
+                  <li>
+                    <span class="y">{p.startDate}</span> {p.url ? <a href={p.url}>{p.name}</a> : <span class="hi">{p.name}</span>}
+                    <span class="d"> · {p.description}</span>
+                  </li>
+                ))}
+              </ul>
+            </dd>
+          </div>
+        </dl>
+      </section>
+
+      <section id="build" class="block" aria-labelledby="build-h">
+        <Prompt id="build-h" cmd="./how-this-site-is-built.sh" label="How this site is built" />
+        <p class="build-intro">
+          This site is a repo that maintains itself. Coding agents edit one YAML file, and a CI pipeline turns it
+          into this page and the PDF, and blocks the deploy if any check fails.
+        </p>
+        <ol class="steps" data-build-steps>
+          <li><span class="g">✓</span> fetch GitHub stats <span class="d">weekly cron · {generated}</span></li>
+          <li><span class="g">✓</span> validate resume.yaml <span class="d">JSON Resume schema + zod</span></li>
+          <li><span class="g">✓</span> astro build <span class="d">static HTML, no framework runtime</span></li>
+          <li><span class="g">✓</span> render resume.pdf <span class="d">Playwright · <span data-build="pdfPages">≤ 2</span> pages</span></li>
+          <li><span class="g">✓</span> playwright tests <span class="d">desktop + mobile · <span data-build="tests">e2e + visual</span></span></li>
+          <li><span class="g">✓</span> link check + private leak check</li>
+          <li><span class="g">✓</span> deploy to GitHub Pages <span class="d" data-build="deploy">{sha && <a href={`${repoUrl}/actions/runs/${runId}`}>{sha}</a>}</span></li>
+        </ol>
+        <p class="kit">
+          <span class="d">agent kit</span>
+          <a href={`${repoUrl}/blob/main/CLAUDE.md`}>CLAUDE.md</a>
+          <a href={`${repoUrl}/blob/main/AGENTS.md`}>AGENTS.md</a>
+          <a href={`${repoUrl}/blob/main/.claude/commands/update-resume.md`}>/update-resume</a>
+          <a href={`${repoUrl}/blob/main/.claude/commands/refresh-projects.md`}>/refresh-projects</a>
+          <a href={`${repoUrl}/blob/main/.claude/commands/tailor.md`}>/tailor</a>
+        </p>
+        <p class="kit"><span class="d">source</span> <a href={repoUrl}>{repoSlug}</a></p>
+      </section>
+
+      <footer class="block end">
+        <p>
+          <span class="g bold">mico@github</span> <span class="b bold">~</span> <span class="d">%</span>
+          <span class="cursor" aria-hidden="true"></span>
+        </p>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // Theme toggle
+    const root = document.documentElement;
+    const label = document.querySelector('[data-theme-label]');
+    const sync = () => { if (label) label.textContent = root.dataset.theme === 'light' ? 'light' : 'dark'; };
+    sync();
+    document.querySelector('[data-theme-toggle]')?.addEventListener('click', () => {
+      root.dataset.theme = root.dataset.theme === 'light' ? 'dark' : 'light';
+      try { localStorage.setItem('theme', root.dataset.theme); } catch {}
+      sync();
+    });
+
+    // Active tab follows the section in view
+    const tabs = [...document.querySelectorAll<HTMLAnchorElement>('.tab')];
+    const setActive = (id: string) => tabs.forEach((t) => t.toggleAttribute('aria-current', t.dataset.tab === id));
+    const io = new IntersectionObserver(
+      (entries) => {
+        const vis = entries.filter((e) => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+        if (vis) setActive(vis.target.id);
+      },
+      { rootMargin: '-30% 0px -60% 0px' },
+    );
+    document.querySelectorAll('main section[id]').forEach((s) => io.observe(s));
+
+    // Live build facts written by CI after the tests run
+    fetch('/build.json', { cache: 'no-store' })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((b) => {
+        if (!b) return;
+        const set = (k: string, html: string) => document.querySelectorAll(`[data-build="${k}"]`).forEach((el) => (el.innerHTML = html));
+        if (b.pdfPages) set('pdfPages', String(b.pdfPages));
+        if (b.tests) set('tests', `${b.tests.passed}/${b.tests.total} passed`);
+        if (b.sha && b.runUrl) set('deploy', `<a href="${b.runUrl}">${String(b.sha).slice(0, 7)}</a> · ${String(b.builtAt).slice(0, 10)}`);
+      })
+      .catch(() => {});
+  </script>
+</Base>
+
+<style>
+  .window {
+    max-width: 104ch;
+    margin: 2.5rem auto 3rem;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+  }
+
+  .titlebar {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 1ch;
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--line);
+    border-radius: 10px 10px 0 0;
+    font-size: 0.87rem;
+  }
+  .tabs {
+    display: flex;
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    flex: none;
+    padding: 0.55rem 1.4ch;
+    color: var(--dim);
+    border-right: 1px solid var(--line);
+    white-space: nowrap;
+  }
+  .tab:hover { color: var(--fg); text-decoration: none; }
+  .tab[aria-current] { color: var(--bright); background: var(--bg); box-shadow: inset 0 -2px 0 var(--green); }
+  .actions { display: flex; align-items: center; gap: 1.5ch; padding: 0 1.4ch; flex: none; }
+  .theme-toggle {
+    font: inherit;
+    color: var(--dim);
+    background: none;
+    border: 0;
+    padding: 0.3rem 0;
+    cursor: pointer;
+  }
+  .theme-toggle:hover { color: var(--fg); }
+  .pdf { color: var(--green); font-weight: 700; white-space: nowrap; }
+
+  .term { padding: 2.25rem 3.5ch 1rem; }
+  .block { padding-bottom: 3.25rem; }
+
+  /* Hero */
+  .boot { margin-bottom: 1.1rem; font-weight: 700; display: flex; column-gap: 1ch; }
+  .typed { display: inline-block; }
+  h1 {
+    font-size: clamp(2rem, 1.2rem + 3.6vw, 3.4rem);
+    line-height: 1.05;
+    font-weight: 700;
+    color: var(--bright);
+    letter-spacing: -0.02em;
+  }
+  .label { font-size: 1.1rem; margin-top: 0.6rem; font-weight: 700; }
+  .where { margin-top: 0.15rem; }
+  .summary { max-width: 70ch; margin-top: 1.1rem; }
+  .contact { display: flex; flex-wrap: wrap; gap: 0.35rem 3ch; margin-top: 1.1rem; }
+  .shortlog { margin-top: 1.75rem; }
+  .shortlog li { display: flex; flex-wrap: wrap; column-gap: 2ch; }
+  .shortlog .num { text-align: right; font-weight: 700; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .typed { overflow: hidden; white-space: nowrap; width: 0; animation: type 0.5s steps(6) 0.25s forwards; }
+    .hero .out { opacity: 0; animation: show 0.01s linear 0.85s forwards; }
+    @keyframes type { to { width: 6ch; } }
+    @keyframes show { to { opacity: 1; } }
+  }
+
+  /* Test run */
+  .suite { margin-bottom: 0.6rem; }
+  .pass { background: var(--green); color: var(--bg); font-weight: 700; padding: 0 0.6ch; }
+  .specs li { display: flex; align-items: baseline; column-gap: 1ch; padding-left: 2ch; }
+  .specs .tick { flex: none; }
+  .specs .leader { flex: 1 1 2ch; min-width: 2ch; border-bottom: 1px dotted var(--line); transform: translateY(-0.3em); }
+  .specs .where { flex: none; white-space: nowrap; }
+  .summary-line { margin-top: 1rem; }
+
+  /* Experience */
+  .log { list-style: none; padding: 0; }
+  .commit { position: relative; padding: 0 0 1.5rem 3ch; border-left: 1px solid var(--line); margin-left: 0.5ch; }
+  .commit:last-child { border-left-color: transparent; padding-bottom: 0; }
+  .commit::before { content: '*'; position: absolute; left: -0.5ch; top: 0; color: var(--yellow); background: var(--bg); font-weight: 700; line-height: 1.6; }
+  .subject { display: flex; flex-wrap: wrap; column-gap: 1.5ch; }
+  .org { margin-bottom: 0.35rem; }
+  .bullets li { position: relative; padding-left: 2ch; max-width: 78ch; }
+  .bullets li::before { content: '-'; position: absolute; left: 0; color: var(--dim); }
+
+  /* Projects */
+  .updated { margin: -0.5rem 0 1.25rem; }
+  .dir { margin: 0.5rem 0 0.6rem; }
+  .dir .normal { font-weight: 400; }
+  .tree { margin-bottom: 1rem; }
+  .archive .row { position: relative; padding: 0 0 0.2rem 4ch; display: flex; flex-wrap: wrap; column-gap: 2ch; }
+  .archive .row::before { content: '├──'; position: absolute; left: 0; color: var(--dim); }
+  .archive .row:last-child::before { content: '└──'; }
+
+  /* Skills */
+  .skills { margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(34ch, 1fr)); gap: 0.9rem 4ch; }
+  .skills dd { margin: 0; }
+
+  /* About */
+  .ls { margin-bottom: 2.5rem; }
+  .ls li { display: grid; grid-template-columns: 8ch 18ch 1fr; column-gap: 1ch; }
+  .yaml { margin: 0; }
+  .yaml > div { display: grid; grid-template-columns: 15ch 1fr; column-gap: 1ch; margin-bottom: 0.6rem; }
+  .yaml dt { color: var(--cyan); }
+  .yaml dt::after { content: ':'; color: var(--dim); }
+  .yaml dd { margin: 0; max-width: 76ch; }
+  .dash li { position: relative; padding-left: 2ch; }
+  .dash li::before { content: '-'; position: absolute; left: 0; color: var(--dim); }
+
+  /* Build */
+  .build-intro { max-width: 70ch; margin-bottom: 1rem; }
+  .steps { padding-left: 0; list-style: none; counter-reset: step; margin-bottom: 1rem; }
+  .steps li { counter-increment: step; display: flex; flex-wrap: wrap; column-gap: 1ch; }
+  .steps li::before { content: '[' counter(step) '/7]'; color: var(--dim); }
+  .kit { display: flex; flex-wrap: wrap; column-gap: 2ch; }
+
+  .end { padding-bottom: 1rem; }
+  .cursor { display: inline-block; width: 1ch; height: 1.15em; vertical-align: text-bottom; background: var(--fg); }
+  @media (prefers-reduced-motion: no-preference) {
+    .cursor { animation: blink 1.1s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+  }
+
+  @media (max-width: 760px) {
+    :global(html) { font-size: 14px; scroll-padding-top: 7rem; }
+    .window { margin: 0; border: 0; border-radius: 0; box-shadow: none; }
+    .titlebar { border-radius: 0; flex-direction: column; gap: 0; }
+    .actions { justify-content: space-between; padding: 0.35rem 2ch; border-top: 1px solid var(--line); order: -1; border-top: 0; border-bottom: 1px solid var(--line); }
+    .term { padding: 1.5rem 2ch 1rem; }
+    .specs li { flex-wrap: wrap; margin-bottom: 0.45rem; }
+    .specs .spec { flex: 1 1 0; min-width: 0; }
+    .specs .leader { display: none; }
+    .specs .where { flex-basis: 100%; padding-left: 2ch; line-height: 1.35; }
+    .ls li { grid-template-columns: 8ch 1fr; }
+    .ls .issuer { display: none; }
+    .yaml > div { grid-template-columns: 1fr; }
+    .yaml dd { padding-left: 2ch; }
+    .skills { grid-template-columns: 1fr; }
+  }
+</style>

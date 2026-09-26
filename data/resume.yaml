@@ -1,0 +1,225 @@
+# Source of truth for the site, the PDF and the README.
+# Follows the JSON Resume schema (https://jsonresume.org/schema), written as YAML.
+# Custom keys are prefixed with "x-". Never add a phone number: this repo is public.
+$schema: https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json
+
+basics:
+  name: Miguel Carlo Rigunay
+  label: QA Chapter Lead · Test Automation & AI
+  email: mico.rigunay@gmail.com
+  url: https://mickosis.github.io
+  summary: >-
+    QA Chapter Lead with over ten years in manual and automated testing across
+    telematics, airline, logistics and SaaS products. I lead a chapter of QA
+    engineers in Manila, build mobile and web automation in TypeScript, and bring
+    AI into everyday testing work with coding agents, Copilot and custom MCP servers.
+  location:
+    city: Metro Manila
+    countryCode: PH
+    region: Philippines
+  profiles:
+    - network: GitHub
+      username: Mickosis
+      url: https://github.com/Mickosis
+    - network: LinkedIn
+      username: miguelrigunay
+      url: https://www.linkedin.com/in/miguelrigunay/
+
+work:
+  - name: EROAD
+    position: Chapter Lead - QA
+    location: Pasig, Philippines (Hybrid)
+    startDate: 2025-11
+    summary: Leads the Manila QA chapter and drives AI adoption across testing.
+    highlights:
+      - Lead 5 QA engineers and the Manila QA Chapter, setting how the team plans, writes and automates tests.
+      - Drive AI adoption in QA with agentic terminal workflows (cmux) and GitHub Copilot.
+      - Build MCP servers that connect AI assistants to Insomnia and TestRail.
+      - Contribute to internal telematics tooling used by engineering teams.
+  - name: EROAD
+    position: Software QA Engineer
+    location: Auckland, New Zealand (Remote)
+    startDate: 2023-11
+    endDate: 2025-11
+    summary: Automation test analyst for the In-Cab Experience team.
+    highlights:
+      - Led the In-Cab Automation Initiative, designing a WebdriverIO + Appium suite in TypeScript that runs locally and in the cloud on LambdaTest.
+      - Set up the suite's GitHub repository with automated quality checks through GitHub Actions.
+      - Revamped the manual QA process with test case writing and execution standards in TestRail, raising consistency and coverage.
+      - Built and maintained shared automated test scripts in Java with Appium and Selenium.
+  - name: Circular Economy Systems (CES)
+    position: Automation Tester
+    location: Sydney, Australia (Remote)
+    startDate: 2022-07
+    endDate: 2023-10
+    summary: Lead QA engineer for the Platform squad.
+    highlights:
+      - Automated tests with Testsigma and Postman, reaching up to 80% code coverage.
+      - Cut team regression time from 7 days to 4 hours.
+      - Worked with product owners and business analysts to roll changes out across squads.
+      - Ran scrum ceremonies as secondary Scrum Master.
+  - name: Accenture
+    position: Test Engineering Team Lead
+    location: Quezon City, Philippines (Remote)
+    startDate: 2021-09
+    endDate: 2022-07
+    summary: QA lead for Qantas Airways mobile apps, Travel Experience squad.
+    highlights:
+      - Led a team of 3 QA engineers as Lead Implementation Engineer for the Qantas Travel Experience squad.
+      - Managed release testing across squads, cutting spillover tasks by 90%.
+      - Ran manual and automated tests for iOS and Android front ends against a shared backend.
+      - Drove sprint progress as Scrum Master.
+  - name: Oracle NetSuite
+    position: Software Engineer in Test
+    location: Makati, Philippines
+    startDate: 2020-03
+    endDate: 2021-08
+    summary: SDET for Infrastructure Product Services.
+    highlights:
+      - Designed test plans and automation scenarios for Infrastructure Product Services.
+      - Cut regression from 2 days to 6 hours through automation.
+      - Documented QA processes so new hires could start testing within 7 days.
+      - Built Java and JavaScript test libraries on Selenium WebDriver.
+  - name: Navitaire, an Amadeus company
+    position: Senior Software QA Analyst
+    location: Taguig, Philippines
+    startDate: 2015-06
+    endDate: 2020-03
+    summary: Senior QA engineer and subject matter expert for Navitaire Loyalty.
+    highlights:
+      - Built automated desktop and API tests that cut total testing time by 90%.
+      - Trained and led up to 4 engineers as Test Automation Lead.
+      - Maintained C# test libraries integrated into CI/CD.
+      - Served as subject matter expert for Navitaire Loyalty estimates and planning.
+
+education:
+  - institution: Adamson University
+    area: Information Technology
+    studyType: Bachelor of Science
+    startDate: "2010"
+    endDate: "2015"
+
+certificates:
+  - name: Appium Mobile App Automation with Java and TestNG
+    issuer: Udemy
+    date: 2024-01
+  - name: ISTQB Foundation Exam Prep
+    issuer: LinkedIn Learning
+    date: 2023-01
+  - name: Appium Mobile App Automation with Python
+    issuer: Udemy
+    date: 2022-12
+  - name: LambdaTest Test Automation Professional
+    issuer: LambdaTest
+    date: 2022-12
+  - name: Playwright Automation with JavaScript
+    issuer: Udemy
+    date: 2022-08
+  - name: Selenium WebDriver with Python
+    issuer: Udemy
+    date: 2022-05
+  - name: EF SET English Certificate (C2 Proficient)
+    issuer: EF SET
+    date: 2021-06
+
+skills:
+  - name: Automation
+    keywords: [WebdriverIO, Appium, Playwright, Selenium, TestNG, Testsigma]
+  - name: AI tooling
+    keywords: [Claude Code, GitHub Copilot, MCP servers, cmux, Agentic workflows]
+  - name: Languages
+    keywords: [TypeScript, JavaScript, Python, Java, C#]
+  - name: API
+    keywords: [Postman, Insomnia, Swagger]
+  - name: CI/CD
+    keywords: [GitHub Actions, Azure Pipelines, Jenkins, Bitbucket]
+  - name: Test management
+    keywords: [TestRail, Jira, Confluence]
+  - name: Databases
+    keywords: [MySQL, Oracle, MongoDB]
+  - name: Performance & security
+    keywords: [Gatling, OWASP ZAP, Burp Suite]
+  - name: Network
+    keywords: [Proxyman, Charles Proxy]
+  - name: Platforms
+    keywords: [iOS, Android, macOS, Windows, Azure]
+
+languages:
+  - language: English
+    fluency: Full professional, C2
+  - language: Filipino
+    fluency: Native
+
+interests:
+  - name: Guitar
+  - name: Music production
+  - name: Travel
+  - name: Computer games
+  - name: How I Met Your Mother
+  - name: Reddit
+
+projects:
+  - name: Todoist Workflow for Alfred
+    startDate: "2023"
+    url: https://github.com/Mickosis/todoist-alfred-workflow
+    description: Python Alfred workflow that turns natural-language input into Todoist tasks through the Todoist API.
+  - name: Shopify Shopper
+    startDate: "2021"
+    url: https://github.com/Mickosis/shopifyshopper
+    description: Python monitor for Shopify stores that automates purchases with Selenium, logs to Discord webhooks, alerts through Twilio and runs on AWS.
+  - name: Private game server
+    startDate: "2017"
+    description: C and C++ contributions, Git workflow, Linux VPS setup and game database administration.
+  - name: Pixel Bot
+    startDate: "2017"
+    url: https://github.com/Mickosis/lrn2play
+    description: AutoIt automation that drives in-game actions with keyboard and mouse input and pattern recognition of UI elements.
+  - name: Faculty/Class Manager
+    startDate: "2014"
+    url: https://github.com/Mickosis/ClassManager
+    description: Visual Basic desktop and Android app for faculty with a seat plan creator and flexible grade computation. Led design, development and documentation.
+
+# Career results rendered as a passing test run on the site and PDF.
+x-results:
+  - spec: cuts regression from 7 days to 4 hours
+    where: CES
+    year: "2023"
+  - spec: cuts regression from 2 days to 6 hours
+    where: Oracle NetSuite
+    year: "2021"
+  - spec: reduces total testing time by 90%
+    where: Navitaire
+    year: "2019"
+  - spec: reduces sprint spillover by 90%
+    where: Accenture · Qantas
+    year: "2022"
+  - spec: reaches 80% code coverage with Testsigma and Postman
+    where: CES
+    year: "2023"
+  - spec: onboards new QA hires to testing within 7 days
+    where: Oracle NetSuite
+    year: "2021"
+  - spec: runs one Appium suite locally and on LambdaTest cloud
+    where: EROAD
+    year: "2024"
+  - spec: leads 5 QA engineers and the Manila QA chapter
+    where: EROAD
+    year: "2025"
+  - spec: connects AI assistants to Insomnia and TestRail via MCP
+    where: EROAD
+    year: "2026"
+
+x-trainings:
+  - name: Azure DevOps Testing and QA Workshop
+    issuer: Microsoft Philippines Inc.
+  - name: Requirements Based Testing
+    issuer: Phoenix One Knowledge Solutions, Inc.
+  - name: The 7 Habits of Highly Effective People
+    issuer: Franklin Covey Co.
+  - name: The Benchmark Work Values
+    issuer: Benchmark Consulting, Inc.
+  - name: "Insights Discovery: Discovering Team Effectiveness"
+  - name: Light Bulbs
+    issuer: Arc Docendi, Inc.
+  - name: Rainbow Life
+    issuer: Ancilla Enterprise Development Consulting, Inc.

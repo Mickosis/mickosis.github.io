@@ -1,0 +1,87 @@
+/* Palette: Ghostty "Dark+" (the owner's terminal theme) and its VS Code "Light+" companion. */
+@font-face { font-family: Hack; src: url('/fonts/hack-regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: Hack; src: url('/fonts/hack-bold.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: Hack; src: url('/fonts/hack-italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
+
+:root {
+  --desk: #121212;
+  --bg: #1e1e1e;
+  --fg: #cccccc;
+  --bright: #e5e5e5;
+  --dim: #8b8b8b;
+  --line: #3a3d41;
+  --select: #3a3d41;
+  --green: #23d18b;
+  --red: #f14c4c;
+  --yellow: #e5e510;
+  --blue: #3b8eea;
+  --magenta: #d670d6;
+  --cyan: #29b8db;
+  --glass: rgba(30, 30, 30, 0.92);
+  --shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  --desk: #e4e6ea;
+  --bg: #ffffff;
+  --fg: #333333;
+  --bright: #111111;
+  --dim: #6b6b6b;
+  --line: #d4d4d4;
+  --select: #add6ff;
+  --green: #0f7b3c;
+  --red: #cd3131;
+  --yellow: #795e00;
+  --blue: #0451a5;
+  --magenta: #a4079f;
+  --cyan: #0b6e8c;
+  --glass: rgba(255, 255, 255, 0.92);
+  --shadow: 0 30px 80px rgba(20, 30, 50, 0.18);
+  color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  font-family: Hack, ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem;
+}
+
+body {
+  margin: 0;
+  background: var(--desk);
+  color: var(--fg);
+  min-height: 100vh;
+}
+
+::selection { background: var(--select); color: var(--bright); }
+
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; border-radius: 2px; }
+
+p, ul, ol, pre, h1, h2, h3 { margin: 0; }
+ul { padding: 0; list-style: none; }
+h2, h3 { font-size: 1rem; font-weight: 700; }
+
+.g { color: var(--green); }
+.r { color: var(--red); }
+.y { color: var(--yellow); }
+.b { color: var(--blue); }
+.m { color: var(--magenta); }
+.c { color: var(--cyan); }
+.d { color: var(--dim); }
+.hi { color: var(--bright); }
+.bold { font-weight: 700; }
+.nowrap { white-space: nowrap; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

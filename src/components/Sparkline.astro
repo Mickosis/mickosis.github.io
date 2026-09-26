@@ -1,0 +1,14 @@
+---
+import { sparkline } from '../lib/data';
+interface Props { values: number[]; width?: number; label: string }
+const { values, width = 26, label } = Astro.props;
+const total = values.reduce((a, b) => a + b, 0);
+---
+{values.length > 0 && (
+  <span class="spark" role="img" aria-label={`${label}: ${total} over ${values.length} weeks`} title={`${total} in the last ${values.length} weeks`}>
+    {sparkline(values, width)}
+  </span>
+)}
+<style>
+  .spark { color: var(--green); letter-spacing: 0; white-space: nowrap; }
+</style>

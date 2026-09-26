@@ -1,0 +1,29 @@
+---
+/** A shell prompt line. Used as each section's heading: the command that "prints" the section. */
+interface Props {
+  cmd: string;
+  cwd?: string;
+  as?: 'h1' | 'h2' | 'p';
+  label?: string;
+  id?: string;
+}
+const { cmd, cwd = '~', as: Tag = 'h2', label, id } = Astro.props;
+---
+<Tag class="prompt" id={id} aria-label={label}>
+  <span class="who g" aria-hidden="true">mico@github</span>
+  <span class="cwd b" aria-hidden="true">{cwd}</span>
+  <span class="d" aria-hidden="true">%</span>
+  <span class="cmd hi">{cmd}</span>
+</Tag>
+<style>
+  .prompt {
+    font-size: 1rem;
+    font-weight: 700;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 1ch;
+    margin-bottom: 1rem;
+    overflow-wrap: anywhere;
+  }
+  .who, .cwd { font-weight: 700; }
+</style>

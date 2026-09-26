@@ -1,0 +1,37 @@
+{
+  "name": "mickosis.github.io",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Agent-built resume and profile site for Miguel Carlo Rigunay",
+  "scripts": {
+    "dev": "astro dev",
+    "fetch:github": "tsx scripts/fetch-github.ts",
+    "build:site": "astro build",
+    "build:pdf": "tsx scripts/build-pdf.ts",
+    "build": "npm run build:site && npm run build:pdf",
+    "preview": "astro preview --port 4321",
+    "test": "playwright test",
+    "leak-check": "tsx scripts/leak-check.ts",
+    "build:info": "tsx scripts/write-build-info.ts",
+    "screenshots": "tsx scripts/screenshots.ts out",
+    "check": "npm run build && npm test && npm run leak-check"
+  },
+  "dependencies": {
+    "@fontsource-variable/source-serif-4": "^5.3.0",
+    "astro": "^7.3.5",
+    "hack-font": "^3.3.0",
+    "js-yaml": "^5.4.2",
+    "qrcode": "^1.5.4",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^26.6.3",
+    "@types/qrcode": "^1.5.6",
+    "pdf-lib": "^1.17.1",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3"
+  }
+}

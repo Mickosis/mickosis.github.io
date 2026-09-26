@@ -1,0 +1,71 @@
+# Which repositories the site shows and how.
+#
+# Public repos: everything owned, non-fork and not excluded is listed automatically,
+# sorted by latest push. "featured" pins repos to the top with a hand-written blurb.
+#
+# Private repos: NEVER listed here by name. Each masked card has a public alias only.
+# The alias -> real repo mapping lives in the PRIVATE_REPOS secret
+# (format: "alias=RepoA+RepoB;alias2=RepoC") and is read by scripts/fetch-github.ts.
+owner: Mickosis
+# Commit author names that count as the owner (commits not linked to the GitHub account).
+identities: [Mico Rigunay]
+
+featured:
+  - repo: Modern_Emerald
+    title: Pokémon Modern Emerald
+    blurb: >-
+      Enhanced Pokémon Emerald ROM hack in C with follower Pokémon, custom surf
+      sprites, overworld wild encounters and quality-of-life fixes. Builds and
+      releases through GitHub Actions; developed with coding agents.
+  - repo: lrn2play
+    title: lrn2play
+    blurb: >-
+      Open-source pixel bot in AutoIt that drives game input from screen pattern
+      recognition. My most-starred repo and my first real automation project.
+  - repo: JSPlaywrightFramework
+    title: Playwright framework (JavaScript)
+    blurb: >-
+      Page Object Model test framework on Playwright with Allure reporting,
+      storage-state auth reuse and visual screenshots.
+  - repo: PythonSelFramework
+    title: Selenium framework (Python)
+    blurb: >-
+      Page Object Model framework on Selenium and pytest with data-driven tests,
+      shared utilities and HTML reports.
+  - repo: formy-project-automation
+    title: Selenium framework (Java)
+    blurb: >-
+      Java and Selenium WebDriver exercises covering waits, forms, alerts,
+      page objects and test structure.
+
+exclude:
+  - mickosis.github.io
+
+masked:
+  - alias: game-server
+    title: Online game server platform
+    stack: [C, Python, PHP]
+    blurb: >-
+      Large C server codebase with a web control panel and a client data
+      pipeline with validation tooling. One maintainer working with coding
+      agents under an AGENTS.md contract.
+  - alias: anti-cheat
+    title: Game client anti-cheat
+    stack: [C]
+    blurb: >-
+      Encrypted client transport, hardware-bound session limits, liveness
+      challenges and behavioral detection. Built by an autonomous agent
+      against a roadmap of pass/fail gates.
+  - alias: drum-assistant
+    title: AI-assisted drum MIDI plugin
+    stack: [C++]
+    blurb: >-
+      macOS audio plugin (AU, VST3 and standalone) that learns, generates,
+      validates and converts drum MIDI parts. Spec-first and agent-driven.
+  - alias: follower-audit
+    title: Privacy-first follower audit
+    stack: [HTML, JavaScript]
+    blurb: >-
+      Browser-only tool that merges social follower exports, charts
+      follow-backs and lets you triage non-mutual follows one by one.
+      No data leaves the device.
