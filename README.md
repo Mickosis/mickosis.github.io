@@ -11,8 +11,8 @@ This repo maintains itself. Coding agents edit one YAML file. A CI pipeline refr
 
 | | |
 |---|---|
-| Commits of mine across 16 repos | **1,321** |
-| Commits in the last 90 days | **1,301** |
+| Commits of mine across 16 repos | **1,413** |
+| Commits in the last 90 days | **1,502** |
 | Repos built with coding agents | **4** |
 
 | Project | Stack | My commits | Last 90 days | Agent-built |
@@ -22,12 +22,12 @@ This repo maintains itself. Coding agents edit one YAML file. A CI pipeline refr
 | [Shopify Shopper](https://github.com/Mickosis/shopifyshopper) | Python | 16 | 0 |  |
 | [Playwright framework (JavaScript)](https://github.com/Mickosis/JSPlaywrightFramework) | JavaScript | 1 | 0 |  |
 | [Selenium framework (Python)](https://github.com/Mickosis/PythonSelFramework) | Python, CSS | 3 | 0 |  |
-| Online game server platform *(private)* | C, Python | 1,062 | 1,172 | yes |
-| Privacy-first follower audit *(private)* | HTML, JavaScript | 9 | 2 |  |
-| Game client anti-cheat *(private)* | C | 8 | 8 | yes |
+| Game client anti-cheat *(private)* | C | 31 | 31 | yes |
+| Online game server platform *(private)* | C, Python | 1,130 | 1,349 | yes |
+| Privacy-first follower audit *(private)* | HTML, JavaScript | 10 | 3 |  |
 | AI-assisted drum MIDI plugin *(private)* | C++ | 24 | 24 | yes |
 
-<sub>Updated 2026-09-26 by the weekly workflow.</sub>
+<sub>Updated 2026-09-28 by the weekly workflow.</sub>
 <!-- generated:end -->
 
 ## How it works
