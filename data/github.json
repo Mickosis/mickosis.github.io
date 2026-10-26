@@ -1,20 +1,19 @@
 {
-  "generatedAt": "2026-10-19T03:18:38.214Z",
+  "generatedAt": "2026-10-26T03:15:59.103Z",
   "owner": "Mickosis",
   "totals": {
     "repos": 17,
     "activeRepos90d": 7,
-    "myCommits": 1718,
-    "commits90d": 1704,
+    "myCommits": 1740,
+    "commits90d": 1750,
     "agentRepos": 4,
     "stars": 16
   },
   "contributions": {
-    "totalContributions": 1859,
-    "commitContributions": 29,
-    "privateContributions": 1815,
+    "totalContributions": 1874,
+    "commitContributions": 33,
+    "privateContributions": 1826,
     "weekly": [
-      0,
       0,
       0,
       0,
@@ -66,7 +65,8 @@
       357,
       67,
       23,
-      5
+      20,
+      0
     ]
   },
   "public": [
@@ -80,16 +80,16 @@
       "stars": 0,
       "forks": 0,
       "createdAt": "2026-10-17T07:19:09Z",
-      "pushedAt": "2026-10-18T10:50:18Z",
+      "pushedAt": "2026-10-20T06:05:49Z",
       "firstCommitAt": "2026-10-17T07:19:07Z",
-      "commits": 18,
-      "myCommits": 18,
-      "commits90d": 18,
+      "commits": 22,
+      "myCommits": 22,
+      "commits90d": 22,
       "mergedPRs": 0,
       "releases": 0,
       "languages": {
-        "TypeScript": 176331,
-        "CSS": 16598,
+        "TypeScript": 183103,
+        "CSS": 17367,
         "HTML": 1176
       },
       "weekly": [
@@ -142,9 +142,9 @@
         0,
         0,
         0,
-        0,
         13,
-        5
+        9,
+        0
       ],
       "agentContract": false,
       "homepage": "https://mickosis.github.io/mktmxxng/"
@@ -216,8 +216,8 @@
         0,
         0,
         0,
-        0,
         2,
+        0,
         0,
         0,
         0,
@@ -254,7 +254,6 @@
         "Shell": 935
       },
       "weekly": [
-        0,
         0,
         0,
         0,
@@ -301,6 +300,7 @@
         4,
         0,
         14,
+        0,
         0,
         0,
         0,
@@ -1095,22 +1095,22 @@
       "stars": 0,
       "forks": 0,
       "createdAt": "2026-08-17T11:58:01Z",
-      "pushedAt": "2026-10-11T00:52:28Z",
+      "pushedAt": "2026-10-23T07:28:10Z",
       "firstCommitAt": "2004-11-04T23:25:09Z",
-      "commits": 23132,
-      "myCommits": 1209,
-      "commits90d": 1326,
+      "commits": 23163,
+      "myCommits": 1215,
+      "commits90d": 1356,
       "mergedPRs": 0,
       "releases": 20,
       "languages": {
-        "C++": 18505440,
-        "C": 11052691,
+        "C++": 18511580,
+        "C": 11044498,
         "PHP": 1806967,
-        "Python": 613398,
-        "Shell": 240706,
+        "Python": 629135,
+        "Shell": 253640,
         "CSS": 184258,
-        "Perl": 152264,
-        "CMake": 107413,
+        "Perl": 152242,
+        "CMake": 107836,
         "JavaScript": 29245,
         "Lua": 63528,
         "PowerShell": 21970,
@@ -1118,7 +1118,6 @@
         "Batchfile": 5967
       },
       "weekly": [
-        0,
         0,
         0,
         0,
@@ -1169,6 +1168,7 @@
         107,
         21,
         2,
+        5,
         0
       ],
       "agentContract": true,
@@ -1241,7 +1241,6 @@
         0,
         0,
         0,
-        0,
         4,
         0,
         4,
@@ -1249,6 +1248,7 @@
         70,
         5,
         2,
+        0,
         0
       ],
       "agentContract": true,
@@ -1264,17 +1264,17 @@
       "stars": 0,
       "forks": 0,
       "createdAt": "2026-08-31T12:05:56Z",
-      "pushedAt": "2026-10-18T17:30:52Z",
+      "pushedAt": "2026-10-25T05:04:57Z",
       "firstCommitAt": "2026-08-31T12:03:39Z",
-      "commits": 178,
-      "myCommits": 178,
-      "commits90d": 178,
+      "commits": 190,
+      "myCommits": 190,
+      "commits90d": 190,
       "mergedPRs": 0,
       "releases": 0,
       "languages": {
-        "C++": 1973766,
+        "C++": 2040543,
         "Python": 169468,
-        "CMake": 32734,
+        "CMake": 32765,
         "Shell": 31563,
         "JavaScript": 15194,
         "Objective-C++": 8120,
@@ -1326,7 +1326,6 @@
         0,
         0,
         0,
-        0,
         24,
         0,
         0,
@@ -1334,7 +1333,8 @@
         0,
         0,
         119,
-        35
+        39,
+        8
       ],
       "agentContract": true,
       "homepage": null
@@ -1361,7 +1361,6 @@
         "Python": 4248
       },
       "weekly": [
-        0,
         0,
         0,
         0,
@@ -1410,6 +1409,7 @@
         0,
         2,
         1,
+        0,
         0,
         0,
         0
