@@ -27,7 +27,7 @@ This repo maintains itself. Coding agents edit one YAML file. A CI pipeline refr
 | Game client anti-cheat *(private)* | C | 85 | 85 | yes |
 | Privacy-first follower audit *(private)* | HTML, JavaScript | 10 | 3 |  |
 
-<sub>Updated 2026-10-26 by the weekly workflow.</sub>
+<sub>Updated 2026-11-02 by the weekly workflow.</sub>
 <!-- generated:end -->
 
 ## How it works
