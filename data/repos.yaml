@@ -11,6 +11,25 @@ owner: Mickosis
 identities: [Mico Rigunay]
 
 featured:
+  - repo: insta_sync_mac
+    title: Insta Sync for Mac
+    blurb: >-
+      Native Swift macOS app that sets Mac Contacts photos from Instagram
+      profile pictures and syncs them to iPhone through iCloud. Matches contacts
+      to followed accounts, backs up each contact before changing it, and has
+      golden tests.
+  - repo: mktmxxng
+    title: MKTMXXNG
+    blurb: >-
+      Installable React and TypeScript PWA for a shared list of Makati cafes, on
+      Firebase Auth and Firestore. Rolls a random pick and logs visits. CI runs
+      lint, unit and security-rules tests, and a failed check blocks the deploy.
+  - repo: ig-carousel
+    title: IG Carousel Splitter
+    blurb: >-
+      Browser-only tool that splits panoramas into 1080×1440 Instagram carousel
+      slides as 1:1 pixel copies in lossless PNG. Rejects wrong sizes instead of
+      resizing, and images never leave the device.
   - repo: Modern_Emerald
     title: Pokémon Modern Emerald
     blurb: >-
@@ -45,24 +64,27 @@ exclude:
 masked:
   - alias: game-server
     title: Online game server platform
-    stack: [C, Python, PHP]
+    stack: [C, C++, Python, PHP]
     blurb: >-
-      Large C server codebase with a web control panel and a client data
-      pipeline with validation tooling. One maintainer working with coding
-      agents under an AGENTS.md contract.
+      Large C and C++ server codebase with a web control panel, a client data
+      pipeline with validation tooling, and automated upstream merges. In
+      production. One maintainer working with coding agents under an AGENTS.md
+      contract.
   - alias: anti-cheat
     title: Game client anti-cheat
-    stack: [C]
+    stack: [C, Shell, Python]
     blurb: >-
       Encrypted client transport, hardware-bound session limits, liveness
-      challenges and behavioral detection. Built by an autonomous agent
+      challenges and behavioral detection, now live with automated key
+      rotation. CI runs sanitizers and fuzz tests. Built by an autonomous agent
       against a roadmap of pass/fail gates.
   - alias: drum-assistant
     title: AI-assisted drum MIDI plugin
-    stack: [C++]
+    stack: [C++, Python]
     blurb: >-
-      macOS audio plugin (AU, VST3 and standalone) that learns, generates,
-      validates and converts drum MIDI parts. Spec-first and agent-driven.
+      Audio plugin (AU, VST3 and standalone) for macOS, with a Windows beta.
+      Small neural models turn programmed drum MIDI into playable, human-feeling
+      parts. Spec-first and agent-driven.
   - alias: follower-audit
     title: Privacy-first follower audit
     stack: [HTML, JavaScript]

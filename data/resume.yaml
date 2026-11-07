@@ -134,7 +134,9 @@ skills:
   - name: Terminal workflow
     keywords: [Ghostty, cmux, Neovim]
   - name: Languages
-    keywords: [TypeScript, JavaScript, Python, Java, C#]
+    keywords: [TypeScript, JavaScript, Python, Java, C#, Swift, C, C++]
+  - name: Web & backend
+    keywords: [React, Firebase]
   - name: API
     keywords: [Postman, Insomnia, Swagger]
   - name: CI/CD
